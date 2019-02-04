@@ -840,10 +840,10 @@ foreach@^2.0.5:
   resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
   integrity sha1-C+4AUBiusmDQo6865ljdATbsG5k=
 
-fragl@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/fragl/-/fragl-1.0.4.tgz#bea2a0bdbdd31806b676e84089643ec5a72b5263"
-  integrity sha512-Wm/V1qx2EYZ7IozEjr6pUIQuOmvYJt47FtolF29Gc53WaXjnCj71CfQi2VI18Xbe6M29Nhp/OGp2uuJycdoPsw==
+fragl@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/fragl/-/fragl-1.0.6.tgz#d936fd90c65216e0a28830281ef931ae76428987"
+  integrity sha512-/9Y+R14CD97kO97wtCutZCDP62AOj46KGBazlxrmS5O6h4KBXEytG58sZtvmGiVFpf7HyUCBZZqB80GRpW8iGg==
 
 from2@^2.3.0:
   version "2.3.0"

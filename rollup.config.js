@@ -8,6 +8,7 @@ export default [
 	// browser-friendly UMD build
 	{
 		input: 'src/index.js',
+		external: ['fragl'],
 		output: {
 			name: 'fragl-displace',
 			file: pkg.browser,
@@ -31,6 +32,7 @@ export default [
 	// `file` and `format` for each target)
 	{
 		input: 'src/index.js',
+		external: ['fragl'],
 		output: [
 			{ file: pkg.main, format: 'cjs' },
 			{ file: pkg.module, format: 'es' }
