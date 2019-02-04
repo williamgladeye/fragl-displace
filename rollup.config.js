@@ -9,7 +9,7 @@ export default [
 	{
 		input: 'src/index.js',
 		output: {
-			name: 'FraGL',
+			name: 'fragl-displace',
 			file: pkg.browser,
 			format: 'umd'
 		},

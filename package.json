@@ -1,6 +1,6 @@
 {
   "name": "fragl-displace",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "repository": {
     "type": "git",
     "url": "https://github.com/williamgladeye/fragl-displace"
@@ -25,5 +25,9 @@
     "dist"
   ],
   "author": "William Hamlin <william@gladeye.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@gladeye/af": "^1.0.4",
+    "fragl": "^1.0.4"
+  }
 }

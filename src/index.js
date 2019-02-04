@@ -1,4 +1,4 @@
-import  FraGL  from 'FraGl';
+import  FraGL  from 'fragl';
 import { af as AF } from '@gladeye/af';
 
 import frag from './shaders/displace.frag';
@@ -9,7 +9,7 @@ class Displace{
     animMouse = { x:0, y:0 };
     timeout = null;
     layers = [];
-
+    running = true;
 
     constructor({
         canvas,
@@ -32,6 +32,16 @@ class Displace{
 
         this.af = AF();
         this.af.addWrite( this.update )
+    }
+
+    stop(){
+        if(this.running) this.af.removeWrite(this.update);
+        this.running = false;
+    }
+
+    start(){
+        if(!this.running) this.af.addWrite(this.update);
+        this.running = true;
     }
 
     addLayer = ({

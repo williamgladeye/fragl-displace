@@ -9,6 +9,11 @@
   dependencies:
     commander "^2.15.1"
 
+"@gladeye/af@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@gladeye/af/-/af-1.0.4.tgz#5756f5e18adb9314e71dfc5b630f96eb73ddc045"
+  integrity sha512-0biz124C89Zx7ENVem7Hp5FH0ffbV4220MvqYYiTMgCVudPNRcSKOONI5ExT/J0rs8GWZuLkDGBrY99ZXpeNoQ==
+
 "@types/estree@0.0.39":
   version "0.0.39"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
@@ -834,6 +839,11 @@ foreach@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/foreach/-/foreach-2.0.5.tgz#0bee005018aeb260d0a3af3ae658dd0136ec1b99"
   integrity sha1-C+4AUBiusmDQo6865ljdATbsG5k=
+
+fragl@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/fragl/-/fragl-1.0.4.tgz#bea2a0bdbdd31806b676e84089643ec5a72b5263"
+  integrity sha512-Wm/V1qx2EYZ7IozEjr6pUIQuOmvYJt47FtolF29Gc53WaXjnCj71CfQi2VI18Xbe6M29Nhp/OGp2uuJycdoPsw==
 
 from2@^2.3.0:
   version "2.3.0"
