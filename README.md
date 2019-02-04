@@ -32,7 +32,7 @@ Webgl plugin for layered, displaced images using the fragl lib.
     import fg from '+/images/fg.jpg';
 
     const canvas = document.querySelector('.canvas');
-    const imageSize = {
+    const imageSize = { // this is to get the ratio for sizing the images
         width:1920,
         height:1080
     }
@@ -53,6 +53,12 @@ Webgl plugin for layered, displaced images using the fragl lib.
         main:fg,
         mask:fgMask
     })
+
+
+    // stop and start again
+    displace.stop()
+    displace.start()
+    
 
 ```
 
