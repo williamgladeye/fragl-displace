@@ -28,6 +28,6 @@
   "license": "MIT",
   "dependencies": {
     "@gladeye/af": "^1.0.4",
-    "fragl": "^1.0.5"
+    "fragl": "^1.0.6"
   }
 }
