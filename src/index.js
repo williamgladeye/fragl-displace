@@ -16,9 +16,8 @@ class Displace{
         imageSize,
     }){
         const args = {
-            clearColor:[1.,1.,1.,1.],
+            clearColor:[1.,1.,1.,0.],
             imageLoadColor:[0,0,0,255],
-            canvas
         }
 
         this.fragl = new FraGL(args)
