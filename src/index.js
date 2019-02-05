@@ -16,8 +16,15 @@ class Displace{
         imageSize,
     }){
         const args = {
-            clearColor:[1.,1.,1.,0.],
+            clearColor:[1.,1.,1.,1.],
             imageLoadColor:[0,0,0,255],
+            canvas: canvas,
+            transparent:false,
+            premultipliedAlpha:true,
+            depth:false,
+            blending:{
+                src: 'ONE'
+            }
         }
 
         this.fragl = new FraGL(args)
@@ -31,6 +38,7 @@ class Displace{
 
         this.af = AF();
         this.af.addWrite( this.update )
+
     }
 
     stop(){
@@ -52,6 +60,7 @@ class Displace{
         const mainTex = this.fragl.textureFromImage(main);
         const dispTex = this.fragl.textureFromImage(displace);
         const maskTex = mask ? this.fragl.textureFromImage(mask) : mainTex;
+
 
         const layer = this.fragl.createRenderLayer(main, {
             uniforms:{
@@ -89,6 +98,7 @@ class Displace{
         this.animMouse.x += (this.mouse.x-this.animMouse.x)*0.1;
         this.animMouse.y += (this.mouse.y-this.animMouse.y)*0.1;
 
+        // console.log('update');
         this.fragl.clear();
 
         this.layers.forEach(function(layer){

@@ -6,7 +6,7 @@
 
     FraGL = FraGL && FraGL.hasOwnProperty('default') ? FraGL['default'] : FraGL;
 
-    var frag = "precision highp float;\n#define GLSLIFY 1\n\nuniform sampler2D u_disp;\nuniform sampler2D u_mask;\nuniform sampler2D u_texture;\nuniform vec2 u_mouse;\nuniform bool u_hasMask;\n\nvarying vec2 vUv;\n\nvoid main() {\n\n    vec4 disp = texture2D(u_disp, vUv);\n    float depth = disp.r;\n    vec2 frag = vUv;\n\n    frag.x += 0.03 * (depth-0.5) * u_mouse.x;\n    frag.y += -0.03 * (depth-0.5) * u_mouse.y;\n\n    float a = 1.;\n\n    if(u_hasMask) {\n        vec4 hidden = texture2D(u_mask, frag);\n        a = dot(hidden.rgb, vec3(1.) );\n        if( a == 0.) discard;\n    }\n\n    vec4 pixel = texture2D(u_texture, frag);\n\n    gl_FragColor = vec4(pixel.rgb, a);\n}"; // eslint-disable-line
+    var frag = "precision highp float;\n#define GLSLIFY 1\n\nuniform sampler2D u_disp;\nuniform sampler2D u_mask;\nuniform sampler2D u_texture;\nuniform vec2 u_mouse;\nuniform bool u_hasMask;\n\nvarying vec2 vUv;\n\nvoid main() {\n\n    vec4 disp = texture2D(u_disp, vUv);\n    float depth = disp.r;\n    vec2 frag = vUv;\n\n    frag.x += 0.03 * (depth-0.5) * u_mouse.x;\n    frag.y += -0.03 * (depth-0.5) * u_mouse.y;\n\n    float a = 1.;\n\n    if(u_hasMask) {\n        vec4 hidden = texture2D(u_mask, frag);\n        a = dot(hidden.rgb, vec3(1.) );\n        a = clamp(a, 0.,1.);\n    }\n\n    vec4 pixel = texture2D(u_texture, frag);\n\n    pixel.a = a;\n    pixel.rgb *= a;\n\n    gl_FragColor = pixel;\n}"; // eslint-disable-line
 
     var vert = "#define GLSLIFY 1\nattribute vec2 a_position;\nattribute vec2 a_texcoord;\n\nvarying vec2 vUv;\nvarying vec4 v_color;\n\nuniform float u_ratio;\nuniform vec2 u_res;\n\nvec2 uv_cover(float canvasRatio, float imageRatio, vec2 uv){\n    vec2 temp = uv;\n\n    if(canvasRatio > imageRatio){\n        temp.y *= imageRatio/canvasRatio;\n        temp.y += (1. - imageRatio/canvasRatio ) * 0.5 ;\n    }else{\n        temp.x /= imageRatio/canvasRatio;\n        temp.x += ( 1. - canvasRatio/imageRatio ) * 0.5;\n    }\n\n    return temp;\n}\n\nvec2 uv_scale( vec2 uv, float val){\n    vec2 temp = uv;\n\n    temp /= val;\n    temp += ( val - 1. ) / val * 0.5;\n\n    return temp;\n}\n\nvoid main() {\n    gl_Position = vec4(vec3(a_position, 1).xy, 0, 1);\n\n    vUv = a_texcoord;\n\n    float canvasRatio = u_res.x / u_res.y;\n    float imageRatio = u_ratio;\n\n    vUv = uv_cover(canvasRatio, imageRatio, vUv);\n\n    vUv = uv_scale(vUv, 1.1);\n\n    v_color = gl_Position * 0.5 + 0.5;\n}"; // eslint-disable-line
 
@@ -76,6 +76,7 @@
                 _this.animMouse.x += (_this.mouse.x - _this.animMouse.x) * 0.1;
                 _this.animMouse.y += (_this.mouse.y - _this.animMouse.y) * 0.1;
 
+                // console.log('update');
                 _this.fragl.clear();
 
                 _this.layers.forEach(function (layer) {
@@ -120,7 +121,13 @@
             var args = {
                 clearColor: [1., 1., 1., 1.],
                 imageLoadColor: [0, 0, 0, 255],
-                canvas: canvas
+                canvas: canvas,
+                transparent: false,
+                premultipliedAlpha: true,
+                depth: false,
+                blending: {
+                    src: 'ONE'
+                }
             };
 
             this.fragl = new FraGL(args);

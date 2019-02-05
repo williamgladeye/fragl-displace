@@ -23,10 +23,13 @@ void main() {
     if(u_hasMask) {
         vec4 hidden = texture2D(u_mask, frag);
         a = dot(hidden.rgb, vec3(1.) );
-        if( a == 0.) discard;
+        a = clamp(a, 0.,1.);
     }
 
     vec4 pixel = texture2D(u_texture, frag);
 
-    gl_FragColor = vec4(pixel.rgb, a);
+    pixel.a = a;
+    pixel.rgb *= a;
+
+    gl_FragColor = pixel;
 }
