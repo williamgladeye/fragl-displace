@@ -62,4 +62,12 @@ Webgl plugin for layered, displaced images using the fragl lib.
 
 ```
 
+An example of a depth map to use as a displacement image :
+<https://www.researchgate.net/profile/Gwang_Park/publication/220235505/figure/fig1/AS:378614760656897@1467280201631/Real-image-and-its-depth-map-in-Ballet-sequence.png>
+
+<br>
+If you wish to mask out a layer use a black and white image,  black will be full transparency.
+<br>
+
+
 That's it...
